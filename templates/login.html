@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SHADOW OFFICIAL &#128081; | Secure Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#0a0a1a;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;overflow:hidden;position:relative;color:#fff}
+.bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:radial-gradient(ellipse at 20% 80%,rgba(100,50,255,0.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(0,200,255,0.1) 0%,transparent 50%)}
+.grid{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background-image:linear-gradient(rgba(100,100,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(100,100,255,0.02) 1px,transparent 1px);background-size:50px 50px}
+.particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.particle{position:absolute;width:3px;height:3px;background:rgba(100,150,255,0.5);border-radius:50%;animation:float 15s infinite;box-shadow:0 0 10px rgba(100,150,255,0.4)}
+@keyframes float{0%,100%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh) rotate(720deg);opacity:0}}
+.lock-wrap{position:relative;z-index:10;width:100%;max-width:420px;padding:20px}
+.lock-shackle{position:absolute;top:-45px;left:50%;transform:translateX(-50%);width:110px;height:75px;border:6px solid rgba(100,150,255,0.3);border-bottom:none;border-radius:55px 55px 0 0;z-index:-1;animation:shackleGlow 2s ease-in-out infinite alternate}
+@keyframes shackleGlow{0%{border-color:rgba(100,150,255,0.3);box-shadow:0 0 20px rgba(100,150,255,0.2)}100%{border-color:rgba(100,150,255,0.6);box-shadow:0 0 40px rgba(100,150,255,0.4)}}
+.lock-body{background:rgba(15,15,30,0.95);border:1px solid rgba(100,150,255,0.15);border-radius:24px;padding:40px 25px;position:relative;backdrop-filter:blur(25px);box-shadow:0 0 80px rgba(100,150,255,0.08),inset 0 0 60px rgba(100,150,255,0.02);overflow:hidden}
+.lock-body::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,#667eea,#764ba2,#f093fb,#667eea);border-radius:26px;z-index:-1;opacity:0.25;animation:borderGlow 4s linear infinite;background-size:400% 400%}
+@keyframes borderGlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.logo{text-align:center;margin-bottom:30px}
+.logo-img{width:80px;height:80px;border-radius:50%;margin:0 auto 15px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:35px;box-shadow:0 0 30px rgba(102,126,234,0.4);animation:logoPulse 2.5s ease-in-out infinite}
+@keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.logo h1{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:4px;text-transform:uppercase}
+.logo h1 span{color:#667eea;text-shadow:0 0 20px rgba(102,126,234,0.5)}
+.logo .subtitle{color:rgba(255,255,255,0.35);font-size:10px;letter-spacing:6px;margin-top:5px;text-transform:uppercase}
+.welcome-text{text-align:center;margin-bottom:25px}
+.welcome-text h2{font-size:20px;font-weight:700;margin-bottom:8px}
+.welcome-text p{color:rgba(255,255,255,0.5);font-size:14px}
+.welcome-text p a{color:#667eea;text-decoration:none;font-weight:600}
+.tabs{display:flex;gap:10px;margin-bottom:25px;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:15px}
+.tab-btn{flex:1;padding:12px;background:transparent;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:10px;transition:all 0.3s}
+.tab-btn.active{background:rgba(102,126,234,0.1);border-color:#667eea;color:#667eea;box-shadow:0 0 20px rgba(102,126,234,0.2)}
+.tab-btn:hover:not(.active){border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7)}
+.form-group{margin-bottom:18px;position:relative}
+.form-group label{display:block;color:rgba(255,255,255,0.5);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;font-family:'Orbitron',sans-serif}
+.form-group input{width:100%;padding:14px 16px;padding-left:45px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:1px;outline:none;transition:all 0.3s}
+.form-group input:focus{border-color:#667eea;box-shadow:0 0 20px rgba(102,126,234,0.15);background:rgba(102,126,234,0.04)}
+.form-group input::placeholder{color:rgba(255,255,255,0.15)}
+.form-group i{position:absolute;left:16px;top:40px;color:rgba(255,255,255,0.3);font-size:16px}
+.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,#667eea,#764ba2);border:none;border-radius:12px;color:#fff;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;letter-spacing:3px;text-transform:uppercase;cursor:pointer;position:relative;overflow:hidden;transition:all 0.3s;margin-top:10px}
+.submit-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left 0.5s}
+.submit-btn:hover::before{left:100%}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(102,126,234,0.3)}
+.loading{display:none;text-align:center;padding:20px}
+.loading.active{display:block}
+.spinner{width:40px;height:40px;border:3px solid rgba(102,126,234,0.15);border-top-color:#667eea;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 15px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{color:#667eea;font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:3px}
+.alert{padding:12px 16px;border-radius:10px;margin-bottom:20px;font-size:13px;display:none;align-items:center;gap:10px}
+.alert.show{display:flex}
+.alert.error{background:rgba(255,50,100,0.1);border:1px solid rgba(255,50,100,0.25);color:#ff3264}
+.alert.success{background:rgba(50,255,100,0.1);border:1px solid rgba(50,255,100,0.25);color:#00ff64}
+.footer{text-align:center;margin-top:20px;color:rgba(255,255,255,0.2);font-size:10px;letter-spacing:2px}
+.footer i{color:#667eea;margin:0 5px}
+@media(max-width:480px){.lock-wrap{padding:15px}.lock-body{padding:25px 20px}.logo h1{font-size:18px}.logo-img{width:60px;height:60px;font-size:28px}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="grid"></div>
+<div class="particles" id="particles"></div>
+
+<div class="lock-wrap">
+<div class="lock-shackle"></div>
+<div class="lock-body">
+<div class="logo">
+<div class="logo-img">&#128081;</div>
+<h1>SHADOW <span>OFFICIAL</span></h1>
+<div class="subtitle">SECURE INTELLIGENCE PLATFORM</div>
+</div>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="switchTab('login')">Sign In</button>
+<button class="tab-btn" onclick="switchTab('register')">Sign Up</button>
+</div>
+
+<div class="alert" id="alert"><i class="fas fa-exclamation-circle"></i><span id="alertText"></span></div>
+
+<!-- LOGIN FORM -->
+<form id="loginForm" onsubmit="handleLogin(event)">
+<div class="welcome-text">
+<h2>Welcome Back</h2>
+<p>Don't have an account yet? <a href="#" onclick="switchTab('register');return false;">Sign up</a></p>
+</div>
+<div class="form-group">
+<label>Username</label>
+<i class="fas fa-user"></i>
+<input type="text" id="loginUsername" placeholder="Enter username" required autocomplete="username">
+</div>
+<div class="form-group">
+<label>Password</label>
+<i class="fas fa-lock"></i>
+<input type="password" id="loginPassword" placeholder="Enter password" required autocomplete="current-password">
+</div>
+<button type="submit" class="submit-btn" id="loginBtn">Login</button>
+</form>
+
+<!-- REGISTER FORM -->
+<form id="registerForm" onsubmit="handleRegister(event)" style="display:none">
+<div class="welcome-text">
+<h2>Create Account</h2>
+<p>Already have an account? <a href="#" onclick="switchTab('login');return false;">Sign in</a></p>
+</div>
+<div class="form-group">
+<label>Choose Username</label>
+<i class="fas fa-user-plus"></i>
+<input type="text" id="regUsername" placeholder="Create username" required autocomplete="username">
+</div>
+<div class="form-group">
+<label>Create Password</label>
+<i class="fas fa-key"></i>
+<input type="password" id="regPassword" placeholder="Create password" required autocomplete="new-password">
+</div>
+<button type="submit" class="submit-btn" id="regBtn">Create Account</button>
+</form>
+
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<p>VERIFYING IDENTITY...</p>
+</div>
+</div>
+<div class="footer"><i class="fas fa-lock"></i> ENCRYPTED CONNECTION <i class="fas fa-lock"></i></div>
+</div>
+
+<script>
+for(let i=0;i<40;i++){
+const p=document.createElement('div');p.className='particle';
+p.style.left=Math.random()*100+'%';
+p.style.animationDelay=Math.random()*15+'s';
+p.style.animationDuration=(8+Math.random()*12)+'s';
+document.getElementById('particles').appendChild(p);
+}
+function switchTab(tab){
+const lf=document.getElementById('loginForm');
+const rf=document.getElementById('registerForm');
+const tabs=document.querySelectorAll('.tab-btn');
+const loading=document.getElementById('loading');
+tabs.forEach(t=>t.classList.remove('active'));
+loading.classList.remove('active');
+if(tab==='login'){lf.style.display='block';rf.style.display='none';tabs[0].classList.add('active');}
+else{lf.style.display='none';rf.style.display='block';tabs[1].classList.add('active');}
+document.getElementById('alert').classList.remove('show');
+}
+function showAlert(msg,type){
+const a=document.getElementById('alert');
+const at=document.getElementById('alertText');
+a.className='alert show '+type;at.textContent=msg;
+}
+async function handleLogin(e){
+e.preventDefault();
+const u=document.getElementById('loginUsername').value.trim();
+const p=document.getElementById('loginPassword').value;
+const btn=document.getElementById('loginBtn');
+btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> VERIFYING...';
+try{
+const res=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});
+let data;try{data=await res.json();}catch(e){data={success:false,message:'Server error'};}
+if(data.success){showAlert('Access granted! Redirecting...','success');setTimeout(()=>window.location.href='/dashboard',800);}
+else{showAlert(data.message||'Login failed','error');}
+}catch(err){showAlert('Connection failed','error');}
+finally{btn.disabled=false;btn.innerHTML='Login';}
+}
+async function handleRegister(e){
+e.preventDefault();
+const u=document.getElementById('regUsername').value.trim();
+const p=document.getElementById('regPassword').value;
+const btn=document.getElementById('regBtn');
+btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> CREATING...';
+try{
+const res=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});
+let data;try{data=await res.json();}catch(e){data={success:false,message:'Server error'};}
+if(data.success){showAlert('Account created! Please sign in.','success');setTimeout(()=>{switchTab('login');document.getElementById('loginUsername').value=u;},1200);}
+else{showAlert(data.message||'Registration failed','error');}
+}catch(err){showAlert('Registration failed','error');}
+finally{btn.disabled=false;btn.innerHTML='Create Account';}
+}
+</script>
+</body>
+</html>
